@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Аня_лук</title>
+  <style>
+    .body {
+        background: plum;
+    }
+
+    .text {
+        font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+        font-size: 18px;
+        color: #660000;
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+
+    }
+    .top{
+        border-radius: 20%;
+
+        height: 100px;
+        width: 100px;
+        background: #1a1c18;
+        margin-left: 50px;
+    }
+
+    .bottom {
+        border-radius: 20%;
+        height: 100px;
+        width: 100px;
+        background: #1a1c18;
+        margin-left: 50px;
+        margin-top: 10px;
+    }
+
+    .text_1 {
+        font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+        font-size: 18px;
+    }
+  </style>
+</head>
+<%
+
+  available_colors = ["Ivory", "Beige", "Lavender", "Mint", "Silver", "Azure", "Pink", "Wheat", "Linen", "Snow"].uniq
+  @top_color = available_colors.sample
+  @bottom_color = available_colors.sample
+
+
+  if @top_color == @bottom_color
+    @bottom_color = "white"
+  end
+%>
+
+<body class="body">
+<p align="center" class="text">Вибираємо лук для Анютика</p>
+<div class="top" style="background-color: <%= @top_color %>;" > <p class="text_1" align="center">Верх</p></div>
+
+<div class="bottom" style="background-color: <%= @bottom_color %>;"><p class="text_1" align="center">Низ</p></div>
+
+<br>
+<button onclick="location.reload()" class="text">Згенерувати новий лук 🎲</button>
+
+</body>
+</html>
