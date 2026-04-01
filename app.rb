@@ -1,6 +1,6 @@
 require 'sinatra'
 
-get '/' do
-  # Це змусить Sinatra відкрити твій файл і дасть йому об'єкт params
-  erb :index 
+get '/temperature' do
+  # Sinatra сама знайде файл temperature.html.erb у папці views
+  erb :temperature
 end
