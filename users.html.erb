@@ -4,9 +4,48 @@
   <meta charset="UTF-8">
   <title>Заповнення Анкети</title>
   <style>
+    .input{
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+        color: #660000;
+    }
+
+    .but {
+        background-color: #ff4d4d; /* Червоний колір, як у Apple або твого бренду */
+        color: white;              /* Білий текст */
+        padding: 10px 25px;       /* Відступи всередині (кнопка стане більшою) */
+        border: none;             /* Прибираємо стандартну чорну рамку */
+        border-radius: 8px;       /* Закруглені кути */
+        font-size: 16px;          /* Розмір тексту */
+        cursor: pointer;          /* Курсор стає "рукою" при наведенні */
+        transition: 0.3s;         /* Плавна анімація */
+    }
+
+    .but:hover {
+        background-color: #e63939; /* Трохи темніший колір, коли наводиш мишкою */
+        transform: scale(1.05);    /* Кнопка злегка збільшується */
+    }
   </style>
 </head>
+<%  class Table
+
+      def initialize(input)
+      @input = input
+      end
+
+    end
+%>
 <body>
-<input type="text" placeholder="Введіть ваше ім'я...">
+<form action="/users" method="GET">
+  <label>
+    <input class="input" name="user_name" placeholder="Введіть ваше ім'я...">
+    <button class="but" type="submit">Hi</button>
+  </label>
+</form>
+
+<% if params["user_name"] && params["user_name"] != "" %>
+  <p style="font-family: 'JetBrains Mono'; color: #660000; font-size: 20px;">
+    Привіт, <%= params["user_name"] %>!
+  </p>
+<% end %>
 </body>
 </html>
