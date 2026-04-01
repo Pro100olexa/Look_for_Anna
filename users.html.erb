@@ -1,51 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
   <meta charset="UTF-8">
   <title>Заповнення Анкети</title>
   <style>
-    .input{
-    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-        color: #660000;
+    body { 
+      font-family: 'JetBrains Mono', sans-serif; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+      margin: 0; 
+      background-color: #f9f9f9;
+    }
+
+    h1 { color: #333; }
+
+    .input {
+      font-family: 'JetBrains Mono', monospace;
+      color: #660000;
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 250px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input:focus {
+      border-color: #ff4d4d;
     }
 
     .but {
-        background-color: #ff4d4d; /* Червоний колір, як у Apple або твого бренду */
-        color: white;              /* Білий текст */
-        padding: 10px 25px;       /* Відступи всередині (кнопка стане більшою) */
-        border: none;             /* Прибираємо стандартну чорну рамку */
-        border-radius: 8px;       /* Закруглені кути */
-        font-size: 16px;          /* Розмір тексту */
-        cursor: pointer;          /* Курсор стає "рукою" при наведенні */
-        transition: 0.3s;         /* Плавна анімація */
+      background-color: #ff4d4d;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: 0.3s;
     }
 
     .but:hover {
-        background-color: #e63939; /* Трохи темніший колір, коли наводиш мишкою */
-        transform: scale(1.05);    /* Кнопка злегка збільшується */
+      background-color: #e63939;
+      transform: scale(1.05);
+    }
+
+    #greeting {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #ff4d4d;
+      font-weight: bold;
     }
   </style>
 </head>
-<%  class Table
-
-      def initialize(input)
-      @input = input
-      end
-
-    end
-%>
 <body>
-<form action="/users" method="GET">
-  <label>
-    <input class="input" name="user_name" placeholder="Введіть ваше ім'я...">
-    <button class="but" type="submit">Hi</button>
-  </label>
-</form>
 
-<% if params["user_name"] && params["user_name"] != "" %>
-  <p style="font-family: 'JetBrains Mono'; color: #660000; font-size: 20px;">
-    Привіт, <%= params["user_name"] %>!
-  </p>
-<% end %>
+  <h1>Заповнення Анкети</h1>
+  
+  <div>
+    <input id="user_name" class="input" placeholder="Введіть ваше ім'я...">
+    <button class="but" onclick="sayHi()">Hi</button>
+  </div>
+
+  <div id="greeting"></div>
+
+  <script>
+    function sayHi() {
+      const name = document.getElementById('user_name').value;
+      const display = document.getElementById('greeting');
+      
+      if (name.trim() !== "") {
+        display.innerText = "HI, " + name + "!";
+      } else {
+        display.innerText = "Будь ласка, введіть ім'я!";
+      }
+    }
+  </script>
+
 </body>
 </html>
