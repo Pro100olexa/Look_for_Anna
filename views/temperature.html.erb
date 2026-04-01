@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Температура</title>
+  <style>
+      .text {
+          font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+          font-size: 18px;
+          color: #660000;
+          background-color: #f4f4f4;
+          padding: 10px;
+          border-radius: 5px;
+          display: inline-block; /* Щоб фон не розтягувався на весь екран */
+          margin-bottom: 5px;
+      }
+      .color {
+          background-color: #660000;
+          height: 100px;
+          width: 100px;
+          margin-top: 15px;
+      }
+  </style>
+</head>
+<body>
+
+<p class="text">Введіть температуру ⭣</p>
+
+<form method="GET">
+  <label>
+    <input class="input" name="temperature" placeholder="Введіть число">
+    <button class="but" type="submit">Перевірити</button>
+  </label>
+</form>
+
+<hr>
+
+<% if params["temperature"] && params["temperature"] != "" %>
+  <% temp = params["temperature"].to_i %>
+
+  <% if temp >= 20 %>
+    <p class="text">Результат: Температура висока 🔥</p>
+  <% elsif temp < 20 && temp >= 10 %>
+    <p class="text">Результат: Середня 🌤️</p>
+  <% else %>
+    <p class="text">Результат: Низька ❄️</p>
+  <% end %>
+<% end %>
+
+<div class="color"></div>
+
+</body>
+</html>
