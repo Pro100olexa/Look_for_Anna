@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Заповнення Анкети</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<%  class Table
-
-      def initialize(input)
-      @input = input
-      end
-
-    end
-%>
 <body>
-<form action="/users" method="GET">
-  <label>
-    <input class="input" name="user_name" placeholder="Введіть ваше ім'я...">
-    <button class="but" type="submit">Hi</button>
-  </label>
-</form>
 
-<% if params["user_name"] && params["user_name"] != "" %>
-  <p style="font-family: 'JetBrains Mono'; color: #660000; font-size: 20px;">
-    Привіт, <%= params["user_name"] %>!
-  </p>
-<% end %>
+    <div class="form-card">
+        <h1>Анкета</h1>
+        
+        <div class="input-group">
+            <input type="text" id="nameInput" class="input-field" placeholder="Введіть ім'я...">
+            <button type="button" class="btn-main" onclick="showHi()">Hi</button>
+        </div>
+
+        <div id="greeting"></div>
+    </div>
+
+    <script>
+        // Ця функція бере текст із поля і показує його на екрані
+        function showHi() {
+            const name = document.getElementById('nameInput').value;
+            const output = document.getElementById('greeting');
+            
+            if (name.trim() !== "") {
+                output.innerText = "HI, " + name + "!";
+            } else {
+                output.innerText = "Введіть ім'я, будь ласка";
+            }
+        }
+    </script>
+
 </body>
 </html>
