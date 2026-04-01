@@ -1,31 +1,31 @@
 require 'webrick'
 require 'erb'
 
-# Динамічне налаштування порту для Render
+# Налаштування порту та хоста для Render
 port = ENV['PORT'] || 3000
-server = WEBrick::HTTPServer.new(Port: port)
+server = WEBrick::HTTPServer.new(
+  Port: port,
+  BindAddress: '0.0.0.0' # Це обов'язково для Render!
+)
 
 server.mount_proc '/' do |req, res|
-  # Визначаємо ім'я файлу (якщо шлях "/", відкриваємо test)
+  # Визначаємо шлях до файлу
   page_name = req.path == "/" ? "test" : req.path.delete_prefix("/")
-  
-  # Додаємо розширення
   file_path = "#{page_name}.html.erb"
 
   if File.exist?(file_path)
     template = File.read(file_path)
-    # Обробляємо ERB
+    # Обробка ERB
     renderer = ERB.new(template)
-    
     res.body = renderer.result(binding)
     res.content_type = 'text/html; charset=utf-8'
   else
     res.status = 404
-    res.body = "Помилка: Файл #{file_path} не знайдено!"
+    res.body = "Файл #{file_path} не знайдено!"
     res.content_type = 'text/html; charset=utf-8'
   end
 end
 
-puts "Server running on port #{port}"
+puts "Server started on port #{port}"
 trap('INT') { server.shutdown }
 server.start
