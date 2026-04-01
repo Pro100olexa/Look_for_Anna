@@ -25,18 +25,18 @@
 
 <p class="text">Введіть температуру⭣</p>
 <label>
-  <input class="input" name="user_name" placeholder="Введіть температуру">
+  <input class="input" name="temperature" placeholder="Введіть температуру">
   <button class="but" type="submit">Перевірити нову температуру</button>
-</label>>
-<%
-  if params["user_name"] >= 20 %>
+</label>
+<% temp = params["temperature"].to_i%>
+<% if temp >= 20 %>
   <p> температура висока </p>
-<% elsif params["user_name"] < 20 && params["user_name"] > 10 %>
-<p> Середня</p>
+<% elsif temp < 20 && temp >= 10 %>
+  <p> Середня</p>
 <% else %>
-<p> Низька </p>
+  <p> Низька </p>
  <% end %>
-<div class="color">
+ <div class="color">
 
 </div>
 </body>
