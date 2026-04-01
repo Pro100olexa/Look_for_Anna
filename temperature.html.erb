@@ -13,7 +13,7 @@
       border-radius: 5px;
   }
   .color{
-      color: #660000;
+      background-color: #660000;
       height: 100px;
       width: 100px;
       
@@ -22,9 +22,22 @@
   </style>
 </head>
 <body>
+
 <p class="text">Введіть температуру⭣</p>
+<label>
+  <input class="input" name="user_name" placeholder="Введіть температуру">
+  <button class="but" type="submit">Перевірити нову температуру</button>
+</label>>
+<%
+  if params["user_name"] >= 20 %>
+  <p> температура висока </p>
+<% elsif params["user_name"] < 20 && params["user_name"] > 10 %>
+<p> Середня</p>
+<% else %>
+<p> Низька </p>
+ <% end %>
 <div class="color">
-  n,n
+
 </div>
 </body>
 </html>
