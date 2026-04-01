@@ -1,85 +1,30 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Заповнення Анкети</title>
-  <style>
-    body { 
-      font-family: 'JetBrains Mono', sans-serif; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      height: 100vh; 
-      margin: 0; 
-      background-color: #f9f9f9;
-    }
-
-    h1 { color: #333; }
-
-    .input {
-      font-family: 'JetBrains Mono', monospace;
-      color: #660000;
-      padding: 12px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      width: 250px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    .input:focus {
-      border-color: #ff4d4d;
-    }
-
-    .but {
-      background-color: #ff4d4d;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: 0.3s;
-    }
-
-    .but:hover {
-      background-color: #e63939;
-      transform: scale(1.05);
-    }
-
-    #greeting {
-      margin-top: 20px;
-      font-size: 24px;
-      color: #ff4d4d;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+<%  class Table
+
+      def initialize(input)
+      @input = input
+      end
+
+    end
+%>
 <body>
+<form action="/users" method="GET">
+  <label>
+    <input class="input" name="user_name" placeholder="Введіть ваше ім'я...">
+    <button class="but" type="submit">Hi</button>
+  </label>
+</form>
 
-  <h1>Заповнення Анкети</h1>
-  
-  <div>
-    <input id="user_name" class="input" placeholder="Введіть ваше ім'я...">
-    <button class="but" onclick="sayHi()">Hi</button>
-  </div>
-
-  <div id="greeting"></div>
-
-  <script>
-    function sayHi() {
-      const name = document.getElementById('user_name').value;
-      const display = document.getElementById('greeting');
-      
-      if (name.trim() !== "") {
-        display.innerText = "HI, " + name + "!";
-      } else {
-        display.innerText = "Будь ласка, введіть ім'я!";
-      }
-    }
-  </script>
-
+<% if params["user_name"] && params["user_name"] != "" %>
+  <p style="font-family: 'JetBrains Mono'; color: #660000; font-size: 20px;">
+    Привіт, <%= params["user_name"] %>!
+  </p>
+<% end %>
 </body>
 </html>
