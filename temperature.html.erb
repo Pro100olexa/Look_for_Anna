@@ -4,22 +4,22 @@
   <meta charset="UTF-8">
   <title>Температура</title>
   <style>
-    .text {
-        font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-        font-size: 18px;
-        color: #660000;
-        background-color: #f4f4f4;
-        padding: 10px;
-        border-radius: 5px;
-        display: inline-block; /* Щоб фон не розтягувався на весь екран */
-        margin-bottom: 5px;
-    }
-    .color {
-        background-color: #660000;
-        height: 100px;
-        width: 100px;
-        margin-top: 15px;
-    }
+      .text {
+          font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+          font-size: 18px;
+          color: #660000;
+          background-color: #f4f4f4;
+          padding: 10px;
+          border-radius: 5px;
+          display: inline-block; /* Щоб фон не розтягувався на весь екран */
+          margin-bottom: 5px;
+      }
+      .color {
+          background-color: #660000;
+          height: 100px;
+          width: 100px;
+          margin-top: 15px;
+      }
   </style>
 </head>
 <body>
@@ -37,7 +37,7 @@
 
 <% if params["temperature"] && params["temperature"] != "" %>
   <% temp = params["temperature"].to_i %>
-  
+
   <% if temp >= 20 %>
     <p class="text">Результат: Температура висока 🔥</p>
   <% elsif temp < 20 && temp >= 10 %>
