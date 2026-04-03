@@ -1,19 +1,16 @@
 require 'sinatra'
 
+# Налаштування для Render
 set :bind, '0.0.0.0'
 port = ENV['PORT'] || 4567
 set :port, port
 
-get '/temperature' do
-  # params працює ТІЛЬКИ тут. 
-  # Якщо на сторінці буде помилка, значить треба перевірити файл .erb
-  erb :temperature
-end
-
-get '/users' do
-  erb :users
-end
-
 get '/' do
-  "Сервер запущено! Перейдіть на /temperature"
+  "Сервер працює! Перейдіть на <a href='/temperature'>сторінку температури</a>"
+end
+
+get '/temperature' do
+  # Змінна params працює ТІЛЬКИ тут, коли користувач відкриває сторінку
+  @temp = params['temp'] 
+  erb :temperature
 end
