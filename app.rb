@@ -1,15 +1,17 @@
 require 'sinatra'
-require 'ostruct' # Додай цей рядок обов'язково
+require 'ostruct'
 
-set :server, 'webrick' # Це допоможе стабілізувати запуск
-set :bind, '0.0.0.0'
+# Це критично важливо для Render:
+# Встановлюємо порт з системної змінної або 4567 за замовчуванням
 set :port, ENV['PORT'] || 4567
+# Дозволяємо підключення ззовні (0.0.0.0 замість localhost)
+set :bind, '0.0.0.0'
 
 get '/' do
   "Сервер працює! Перейдіть на <a href='/temperature'>сторінку температури</a>"
 end
 
 get '/temperature' do
-  @temp = params['temp'] 
+  @temp = params['temp']
   erb :temperature
 end
