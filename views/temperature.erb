@@ -43,26 +43,23 @@
 
 <p class="text">Введіть температуру ⭣</p>
 
-<form method="GET">
-  <label for="temp-input" style="display: none;">Температура</label>
-  <input id="temp-input" class="input" name="temperature" placeholder="Введіть число" value="<%= params['temperature'] %>">
+<form method="GET" action="/temperature">
+  <input class="input" name="temp" placeholder="Введіть число" value="<%= @temp %>">
   <button class="but" type="submit">Перевірити</button>
 </form>
 
 <hr>
 
-<% if params["temperature"] && !params["temperature"].strip.empty? %>
-  <% input_val = params["temperature"].strip %>
+<% if @temp && !@temp.empty? %>
+  <% if @temp.match?(/^-?\d+$/) %>
+    <% t = @temp.to_i %>
 
-  <% if input_val.match?(/^-?\d+$/) %>
-    <% temp = input_val.to_i %>
-
-    <% if temp >= 20 %>
+    <% if t >= 20 %>
       <p class="text">Результат: Температура висока 🔥</p>
-    <% elsif temp >= 10 %>
+    <% elsif t >= 10 %>
       <p class="text">Результат: Середня 🌤️</p>
     <% else %>
-      <p class="text) ">Результат: Низька ❄️</p>
+      <p class="text">Результат: Низька ❄️</p>
     <% end %>
     
     <div class="color"></div>
