@@ -1,17 +1,16 @@
 require 'sinatra'
 require 'ostruct'
 
-# Це критично важливо для Render:
-# Встановлюємо порт з системної змінної або 4567 за замовчуванням
-set :port, ENV['PORT'] || 4567
-# Дозволяємо підключення ззовні (0.0.0.0 замість localhost)
+# Налаштування для Render
 set :bind, '0.0.0.0'
+set :port, ENV['PORT'] || 4567
 
 get '/' do
-  "Сервер працює! Перейдіть на <a href='/temperature'>сторінку температури</a>"
+  "Сервер працює! Перейдіть на <a href='/temperature?temp=25'>сторінку температури</a>"
 end
 
 get '/temperature' do
-  @temp = params['temp']
+  # Використовуємо .to_s, щоб уникнути помилок, якщо параметр порожній
+  @temp = params['temp'].to_s 
   erb :temperature
 end
