@@ -5,12 +5,13 @@ set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
 
 get '/' do
-  # Використовуємо порожній рядок, щоб уникнути помилок при першому заході
-  @temperature = ""
+  # Головна сторінка відразу показує форму
+  @temp = ""
   erb :temperature
 end
 
 get '/temperature' do
-  @temperature = params['temperature'] || ""
+  # ВАЖЛИВО: використовуємо 'temp', бо так написано в name="temp" у твоєму HTML
+  @temp = params['temp'] || ""
   erb :temperature
 end
