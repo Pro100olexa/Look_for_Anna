@@ -1,5 +1,4 @@
-source "https://rubygems.org"
-
-gem "sinatra", "3.0.5"
-gem "rack", "2.2.8"
-gem "ostruct"
+source 'https://rubygems.org'
+gem 'sinatra'
+gem 'rackup' # Це важливо для нових версій Ruby
+gem 'webrick' # Render вимагає це для запуску сервера
