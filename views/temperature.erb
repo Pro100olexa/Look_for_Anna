@@ -48,13 +48,13 @@
     class="input" 
     name="temp" 
     placeholder="Введіть число" 
-    value="<%= h(@temp) %>">
+    value="<%= @temp %>">
   <button class="but" type="submit">Перевірити</button>
 </form>
 
 <hr>
 
-<% if @temp.present? %>
+<% if @temp && !@temp.strip.empty? %>
   <% if @temp.strip.match?(/^-?\d+$/) %>
     <% t = @temp.to_i %>
 
