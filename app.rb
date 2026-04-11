@@ -4,7 +4,7 @@ set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
 
 get '/' do
-  @temp = ""
+  @temp = params['temp'].to_s
   erb :temperature
 end
 
