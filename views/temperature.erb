@@ -44,30 +44,38 @@
 <p class="text">Введіть температуру ⭣</p>
 
 <form method="GET" action="/temperature">
-  <input class="input" name="temp" placeholder="Введіть число" value="<%= @temp %>">
+  <input 
+    class="input" 
+    name="temp" 
+    placeholder="Введіть число" 
+    value="<%= h(@temp) %>">
   <button class="but" type="submit">Перевірити</button>
 </form>
 
 <hr>
 
-<% if @temp && !@temp.empty? %>
-  <% if @temp.match?(/^-?\d+$/) %>
+<% if @temp.present? %>
+  <% if @temp.strip.match?(/^-?\d+$/) %>
     <% t = @temp.to_i %>
 
-    <% if t >= 20 %>
-      <p class="text">Результат: Температура висока 🔥</p>
-    <% elsif t >= 10 %>
-      <p class="text">Результат: Середня 🌤️</p>
-    <% else %>
-      <p class="text">Результат: Низька ❄️</p>
-    <% end %>
+    <% 
+      if t >= 20
+        result = "Температура висока 🔥"
+        color = "red"
+      elsif t >= 10
+        result = "Середня 🌤️"
+        color = "orange"
+      else
+        result = "Низька ❄️"
+        color = "blue"
+      end
+    %>
 
-    <div class="color" style="background-color:
-      <%= t >= 20 ? 'red' : t >= 10 ? 'orange' : 'blue' %>;">
-    </div>
+    <p class="text">Результат: <%= result %></p>
+    <div class="color" style="background-color: <%= color %>;"></div>
 
   <% else %>
-    <p class="text">Помилка: Будь ласка, введіть коректне число ⚠️</p>
+    <p class="text">Помилка: Введіть коректне число ⚠️</p>
   <% end %>
 <% end %>
 
